@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('productos-list-pdf', 'ProductosController@exportPdf')->name('productos.pdf');
 
 Route::resource('/productos', 'ProductosController');
 Route::resource('/proveedores', 'ProveedoresController');

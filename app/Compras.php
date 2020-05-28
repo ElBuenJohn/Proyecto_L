@@ -10,25 +10,11 @@ class Compras extends Model
         
         protected $fillable = [
         'idproveedor',
-        'idusuario',
-        'tipo_identificacion',
+        'idproducto',
         'num_compra',
-        'fecha_compra',
-        'impuesto',
+        'cantidad',
+        'precio',
         'total',
-        'estado'
         ];
-
-    //     /*es el usuario que hace el registro*/
-    //  public function usuario()
-    //  {
-    //      return $this->belongsTo('App\User');
-    //  }
-
-    //  /*el proveedor que hace la compra*/
-    //  public function proveedor()
-    //  {
-    //      return $this->belongsTo('App\Proveedor');
-    //  }
 
 }

@@ -21,10 +21,6 @@
             </li>
             
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="{{ route ('ventas.index') }}">Ventas</a>
-            </li>
-            
-            <li class="nav-item px-lg-4">
                 <form method="POST" action="{{ route('logout') }}">
                     {{ csrf_field() }}
                     <button type="submit" class="btn nav-link text-uppercase text-expanded">Logout</button>

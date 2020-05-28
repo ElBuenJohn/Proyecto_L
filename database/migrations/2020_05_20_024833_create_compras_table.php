@@ -16,15 +16,18 @@ class CreateComprasTable extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idproveedor')->unsigned();
-            // $table->foreign('idproveedor')->references('id')->on('proveedores');
-            $table->integer('idusuario')->unsigned();
-            // $table->foreign('idusuario')->references('id')->on('users');
-            $table->string('tipo_identificacion', 20);
+            $table->foreign('idproveedor','fk_proveedor_id')->references('id')->on('proveedores')
+            -> onDelete('restrict')
+            -> onUpdate('restrict');
+            $table->integer('idproducto')->unsigned();
+            $table->foreign('idproducto','fk_productos_id')->references('id')->on('productos')
+            -> onDelete('restrict')
+            -> onUpdate('restrict');
+            $table->string('nombre', 35);
             $table->string('num_compra', 10);
-            $table->dateTime('fecha_compra');
-            $table->decimal('impuesto', 4, 2);
+            $table->integer('cantidad');
+            $table->decimal('precio', 11, 2);
             $table->decimal('total', 11, 2);
-            $table->string('estado', 20);
             $table->timestamps();
         });
     }
@@ -37,5 +40,9 @@ class CreateComprasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('compras');
+        $table->dropForeign(['idproveedor']);
+        $table->dropColum(['idproveedor']);
+        $table->dropForeign(['idproducto']);
+        $table->dropColum(['idproducto']);
     }
 }

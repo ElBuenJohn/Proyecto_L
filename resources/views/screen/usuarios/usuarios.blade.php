@@ -2,20 +2,7 @@
 
 @section('content')
     <h2 class="section-heading mb-5">
-        <span class="section-heading-lower">USUARIOS</span>
+        <span class="section-heading-lower">Usuarios</span>
     </h2>
-    <hr>
-    content here!
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
     
 @endsection

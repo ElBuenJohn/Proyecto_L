@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Producto;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade as PDF;
 use DB;
 
 
@@ -133,6 +134,13 @@ class ProductosController extends Controller
     {
         Producto::destroy($id);
         return redirect()->route('productos.index');
+    }
+
+    public function exportPdf()
+    {
+        $productos = Producto::get();
+        $pdf = PDF::loadView('pdf.productos', compact('productos'));
+        return $pdf->download('productos-list.pdf');
     }
 
 }

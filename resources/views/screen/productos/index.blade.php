@@ -17,6 +17,8 @@
                         <th>Precio</th>
                         <th colspan = "3">
                             <a href="{{ route('productos.create') }}" class="btn btn-success">Nuevo</a>
+                            <a href="{{route('productos.pdf')}}"class="btn btn-primary">Descargar PDF</a>
+                            
                         </th>
                     </tr>
                 </thead>

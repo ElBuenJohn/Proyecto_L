@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Compras;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use DB;
 
 class ComprasController extends Controller
 {
@@ -11,9 +15,32 @@ class ComprasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    $table->foreign('idproducto'
+    $table->foreign('idproveedor',
+    $table->string('num_compra', 10);
+            $table->integer('cantidad');
+            $table->decimal('precio', 11, 2);
+            $table->decimal('total
+
     public function index()
     {
-        return view('screen.compras.compras');
+        $productos=DB::table('compras as c')
+            ->selectRaw('
+                c.id,
+                c.idproducto,
+                c.idproveedor,
+                c.num_compra as numero,
+                c.cantidad,
+                c.precio, 
+                c.total,
+            ')
+            ->leftJoin('categorias as c','c.idproducto','=','c.id')
+            ->leftJoin()
+            ->orderBy('p.id','desc')
+            ->paginate(10);
+
+        return view('screen.compras.index', compact('compras'));
     }
 
     /**
