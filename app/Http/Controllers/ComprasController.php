@@ -16,13 +16,6 @@ class ComprasController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    $table->foreign('idproducto'
-    $table->foreign('idproveedor',
-    $table->string('num_compra', 10);
-            $table->integer('cantidad');
-            $table->decimal('precio', 11, 2);
-            $table->decimal('total
-
     public function index()
     {
         $productos=DB::table('compras as c')
@@ -30,14 +23,15 @@ class ComprasController extends Controller
                 c.id,
                 c.idproducto,
                 c.idproveedor,
-                c.num_compra as numero,
+                c.num_compra,
                 c.cantidad,
                 c.precio, 
                 c.total,
             ')
-            ->leftJoin('categorias as c','c.idproducto','=','c.id')
-            ->leftJoin()
+            ->leftJoin('productos as p','c.idproducto','=','c.id')
+            ->leftJoin('proveedores as r','c.idproveedor','=','c.id')
             ->orderBy('p.id','desc')
+            ->orderBy('r.id','desc')
             ->paginate(10);
 
         return view('screen.compras.index', compact('compras'));
@@ -50,7 +44,15 @@ class ComprasController extends Controller
      */
     public function create()
     {
-        //
+        $productos = DB::table('productos')
+                ->orderBy('nombre', 'asc')
+                -> pluck('nombre', 'id');
+
+        $proveedores = DB::table('proveedores')
+                ->orderBy('nombre', 'asc')
+                -> pluck('nombre', 'id');
+
+        return view('screen.compras.create', compact('productos','proveedores'));
     }
 
     /**
@@ -59,9 +61,19 @@ class ComprasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $data)
     {
-        //
+        $compra= new Compras();
+
+        $compra->idproducto = $data->idproducto;
+        $compra->idproveedor = $data->idproveedor;
+        $compra->num_compra = $data->num_compra;
+        $compra->cantidad = $data->cantidad;
+        $compra->precio= $data->precio;
+        $compra->total= $data->total;
+        $compra->save();
+
+        return redirect()->route('compras.index');
     }
 
     /**
@@ -72,7 +84,8 @@ class ComprasController extends Controller
      */
     public function show($id)
     {
-        //
+        $compras = Compras::find($id);
+        return view('screen.compras.show', compact('compras'));
     }
 
     /**
@@ -83,7 +96,17 @@ class ComprasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $compras = Compras::find($id);
+
+        $productos = DB::table('productos')
+            ->orderBy('nombre', 'asc')
+            -> pluck('nombre', 'id');
+
+        $proveedores = DB::table('proveedores')
+            ->orderBy('nombre', 'asc')
+            -> pluck('nombre', 'id');
+
+        return view('screen.compras.edit', compact('productos', 'proveedores'));
     }
 
     /**
@@ -95,7 +118,17 @@ class ComprasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $compra= new Compras();
+
+        $compra->idproducto = $data->idproducto;
+        $compra->idproveedor = $data->idproveedor;
+        $compra->num_compra = $data->num_compra;
+        $compra->cantidad = $data->cantidad;
+        $compra->precio= $data->precio;
+        $compra->total= $data->total;
+        $compra->save();
+
+        return redirect()->route('compras.index');
     }
 
     /**
@@ -106,6 +139,7 @@ class ComprasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Compras::destroy($id);
+        return redirect()->route('compras.index');
     }
 }

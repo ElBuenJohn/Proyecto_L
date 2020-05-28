@@ -13,9 +13,9 @@
               <a class="nav-link text-uppercase text-expanded" href="{{ route ('productos.index') }}">Productos</a>
             </li>
             
-            <li class="nav-item px-lg-4">
+            <!-- <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{{ route ('compras.index') }}">Compras</a>
-            </li>
+            </li> -->
             <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{{ route ('clientes.index') }}">Clientes</a>
             </li>

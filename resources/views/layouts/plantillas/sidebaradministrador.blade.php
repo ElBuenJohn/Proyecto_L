@@ -15,15 +15,15 @@
             <li class="nav-item px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="{{ route ('proveedores.index') }}">Proveedores</a>
             </li>
-            <li class="nav-item px-lg-4">
+            <!-- <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{{ route ('compras.index') }}">Compras</a>
-            </li>
+            </li> -->
             <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{{ route ('clientes.index') }}">Clientes</a>
             </li>
-            <li class="nav-item px-lg-4">
+            <!-- <li class="nav-item px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="{{ route ('ventas.index') }}">Ventas</a>
-            </li>
+            </li> -->
             
             <li class="nav-item px-lg-4">
                 <form method="POST" action="{{ route('logout') }}">
