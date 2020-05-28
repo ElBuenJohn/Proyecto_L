@@ -16,8 +16,7 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idcategoria')->unsigned();
-
-             $table->foreign('idcategoria','fk_product_cat')->references('id')->on('categorias')
+            $table->foreign('idcategoria','fk_product_cat')->references('id')->on('categorias')
             -> onDelete('restrict')
             -> onUpdate('restrict');
             $table->string('codigo',50)->nullable();
@@ -37,7 +36,7 @@ class CreateProductosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('productos');
-        $table->dropForeign(['rol_id']);
-        $table->dropColum(['rol_id']);
+        $table->dropForeign(['id']);
+        $table->dropColum(['id']);
     }
 }
